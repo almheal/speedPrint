@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@import './reset';
+
+//components
+@import './components/header';
+@import './components/modal-start';
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #55c5ff;
+  color: #fff;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.main {
+  position: relative;
+  height: 100%;
+}
+
+.active {
+  background-color: #5bc538;
+  color: #fff;
+  padding: 3px;
+  border-radius: 3px;
+  &.error {
+    background-color: #f36747;
+  }
+}
+
+.color-green{
+  color: #5bc538;
+}
+
+.print__inner {
+  padding-top: 90px;
+}
+
+.print__body {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px 0 30px 45px;
+  max-width: 990px;
+  margin: 0 auto;
+}
+
+.print__item {
+  display: flex;
+}
+
+.print__column {
+  flex: 0 0 80%;
+}
+
+.print__text {
+  color: #5c5c5c;
+  font-size: 21px;
+  margin-right: 45px;
+  line-height: 32px;
+}
+
+.print__info {
+  flex: 0 0 20%;
+}
+
+.info__item {
+  margin-bottom: 15px;
+  padding-left: 30px;
+}
+
+.info__name {
+  color: #b5bbc2;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 5px 0;
+}
+
+.info__number {
+  font-size: 32px;
+  color: #67defd;
+  font-weight: 700;
+  & span:nth-child(2) {
+    font-size: 12px;
+  }
+}
