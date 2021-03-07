@@ -21,7 +21,7 @@ export class Router {
       this.page.destroy()
     }
 
-    // $.html(this.$placeholder, '')
+    $.html(this.$placeholder, '')
 
 
     const [route] = this.routes.filter(({ path, component}) => {
@@ -30,7 +30,7 @@ export class Router {
       }
     })
 
-    if(!route) return
+    // if(!route) return
 
     const Page = route.component
 
