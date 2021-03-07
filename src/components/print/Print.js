@@ -3,7 +3,7 @@ import randomItemArray from '@/utils/randomItemArray'
 import checkKeyCode from '@/utils/checkKeyCode'
 import { printTemplate } from './print.template'
 import { textPrint } from '@/mocks/text'
-import $dom from '@core/dom'
+import {$} from '@core/dom'
 
 export class Print extends DomListeners {
   static className = 'print'
@@ -16,16 +16,20 @@ export class Print extends DomListeners {
     this.accuracy = null
     this.speed = null
     this.printText = this.printText.bind(this)
+    this.preventDefaultKey = this.preventDefaultKey.bind(this)
   }
 
-  initListeners() {
+  init() {
     window.addEventListener('keyup', this.printText)
-    window.addEventListener('keydown', (e)=>{
-      if(e.code === 'Space' || e.code === 'Tab'){
-        e.preventDefault()
-      }
-    })
+    window.addEventListener('keydown', this.preventDefaultKey)
     super.initListeners()
+  }
+
+
+  preventDefaultKey(e){
+    if(e.code === 'Space' || e.code === 'Tab'){
+      e.preventDefault()
+    }
   }
 
   // listener keydown print
@@ -36,6 +40,8 @@ export class Print extends DomListeners {
     const activeSymbol = this.print.querySelector('.active')
     const key = e.key
 
+    
+
 
     if(key === activeSymbol.textContent){
       this.changeNextSymbol(activeSymbol)
@@ -43,7 +49,7 @@ export class Print extends DomListeners {
       this.accuracy.textContent = this.accuracyScore()
 
     }else{
-      $dom.toggleClass(activeSymbol, 'add', ['error'])
+      $.toggleClass(activeSymbol, 'add', ['error'])
       this.accuracy.textContent = this.accuracyScore(true)
     }
   }
@@ -52,9 +58,9 @@ export class Print extends DomListeners {
   // change active symbol
   changeNextSymbol(activeSymbol){
     const nextSymbol = activeSymbol.nextElementSibling
-    $dom.toggleClass(activeSymbol, 'remove', ['active'])
-    $dom.toggleClass(activeSymbol, 'add', ['color-green'])
-    $dom.toggleClass(nextSymbol, 'add', ['active'])
+    $.toggleClass(activeSymbol, 'remove', ['active'])
+    $.toggleClass(activeSymbol, 'add', ['color-green'])
+    $.toggleClass(nextSymbol, 'add', ['active'])
   }
 
 
@@ -124,9 +130,9 @@ export class Print extends DomListeners {
     const fragment = document.createDocumentFragment()
 
     splitText.forEach((letter, index) =>{
-      const span = $dom.createElement({tag: 'span', text: letter})
+      const span = $.createElement({tag: 'span', text: letter})
       if(index === 0){
-        $dom.toggleClass(span, 'add', ['active'])
+        $.toggleClass(span, 'add', ['active'])
       }
       fragment.append(span)
     })
@@ -140,5 +146,12 @@ export class Print extends DomListeners {
     this.$root.insertAdjacentHTML('afterbegin', template)
     this.startingText()
     return this.$root
+  }
+
+
+  destroy(){
+    window.removeEventListener('keydown', this.preventDefaultKey)
+    window.removeEventListener('keyup', this.printText)
+    this.$root.remove()
   }
 }

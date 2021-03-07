@@ -13,4 +13,8 @@ export class Header{
     this.$root.insertAdjacentHTML('afterbegin', template)
     return this.$root
   }
+
+  destroy(){
+    this.$root.remove()
+  }
 }

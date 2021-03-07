@@ -1,9 +1,15 @@
 import './assets/styles/scss/index.scss'
-import { Printer } from '@/components/Printer'
-import { Header } from '@/components/header/Header'
-import { Print } from '@/components/print/Print'
-import { StartPrintModal } from '@/components/printModal/StartPrintModal'
+import { Router } from './core/router/Router'
+import { CompletedPage } from './views/CompletedPage'
+import { HomePage } from './views/HomePage'
 
-const printer = new Printer('#app', [Header, Print, StartPrintModal])
-
-printer.render()
+const router = new Router('#app',[
+  {
+    path: '/',
+    component: HomePage
+  },
+  {
+    path: '/completed',
+    component: CompletedPage
+  }
+])

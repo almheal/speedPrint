@@ -1,38 +1,45 @@
-import $dom from '@core/dom'
+import {$} from '@core/dom'
 
 export class Printer {
-  constructor(selector, components) {
-    this.$el = document.querySelector(selector)
-    this.components = components
+  constructor({ components }) {
+    this.components = components || []
   }
 
   getRoot() {
+    const $root = $.createElement({ tag: 'div', classNames: ['printer'] })
+
     this.components = this.components.map((Component) => {
       let $el
 
       if (Component.tag) {
-        $el = $dom.createElement({
+        $el = $.createElement({
           tag: Component.tag,
           classNames: [Component.className],
         })
       } else {
-        $el = $dom.createElement({ tag: 'div', classNames: [Component.className] })
+        $el = $.createElement({
+          tag: 'div',
+          classNames: [Component.className],
+        })
       }
 
       const component = new Component($el)
-
+      $root.append(component.toHTML())
       return component
+    })
+
+    return $root
+  }
+
+  init() {
+    this.components.forEach((component) => {
+      if (component.init) {
+        component.init()
+      }
     })
   }
 
-  render() {
-    this.getRoot()
-
-    this.components.forEach((component) => {
-      this.$el.append(component.toHTML())
-      if (component.initListeners) {
-        component.initListeners()
-      }
-    })
+  destroy(){
+    this.components.forEach(component => component.destroy())
   }
 }

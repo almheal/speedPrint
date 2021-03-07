@@ -21,7 +21,11 @@ export class StartPrintModal extends Modal {
     }
   }
 
-  initListeners() {
+  init() {
     super.initListeners()
+  }
+
+  destroy(){
+    super.destroy()
   }
 }

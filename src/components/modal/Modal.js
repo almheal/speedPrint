@@ -18,5 +18,6 @@ export class Modal extends DomListeners{
 
   destroy(){
     this.$root.remove()
+    super.removeListeners()
   }
 }
