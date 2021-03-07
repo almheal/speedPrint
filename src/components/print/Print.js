@@ -1,11 +1,11 @@
-import { DomListeners } from '@core/DomListeners'
 import randomItemArray from '@/utils/randomItemArray'
 import checkKeyCode from '@/utils/checkKeyCode'
 import { printTemplate } from './print.template'
 import { textPrint } from '@/mocks/text'
 import {$} from '@core/dom'
+import { PrinterComponent } from '../../core/PrinterComponent'
 
-export class Print extends DomListeners {
+export class Print extends PrinterComponent {
   static className = 'print'
   static tag = 'section'
 
@@ -22,7 +22,7 @@ export class Print extends DomListeners {
   init() {
     window.addEventListener('keyup', this.printText)
     window.addEventListener('keydown', this.preventDefaultKey)
-    super.initListeners()
+    super.init()
   }
 
 
@@ -32,7 +32,7 @@ export class Print extends DomListeners {
     }
   }
 
-  // listener keydown print
+  // listener keyup print
   printText(e) {
     if(!this.print.dataset.print) return
     if(!checkKeyCode(e.keyCode)) return
@@ -40,7 +40,10 @@ export class Print extends DomListeners {
     const activeSymbol = this.print.querySelector('.active')
     const key = e.key
 
-    
+    if(!activeSymbol.nextElementSibling){
+      window.location.href = '/#completed'
+      return
+    }
 
 
     if(key === activeSymbol.textContent){
@@ -152,6 +155,6 @@ export class Print extends DomListeners {
   destroy(){
     window.removeEventListener('keydown', this.preventDefaultKey)
     window.removeEventListener('keyup', this.printText)
-    this.$root.remove()
+    super.destroy()
   }
 }

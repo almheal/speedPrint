@@ -1,23 +1,10 @@
-import { DomListeners } from "@core/DomListeners"
+import { PrinterComponent } from "../../core/PrinterComponent"
 
-export class Modal extends DomListeners{
+export class Modal extends PrinterComponent{
   static className = 'modal'
 
-  constructor($root, listeners){
-    super($root, listeners)
+  constructor($root, options){
+    super($root, options)
     this.$root = $root
-  }
-
-  open(){
-    this.$root.style.display = 'block'
-  }
-
-  close(){
-    this.$root.style.display = 'none'
-  }
-
-  destroy(){
-    this.$root.remove()
-    super.removeListeners()
   }
 }

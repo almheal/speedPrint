@@ -25,6 +25,21 @@ body {
   height: 100%;
 }
 
+.button-primary {
+  display: inline-block;
+  color: #0e509e;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background-color: #ffde0e;
+  padding: 14px 20px;
+  transition: 0.5s;
+  &:hover {
+    transform: scale(0.95);
+    transition: 0.5s;
+  }
+}
+
 .active {
   background-color: #5bc538;
   color: #fff;
@@ -35,7 +50,7 @@ body {
   }
 }
 
-.color-green{
+.color-green {
   color: #5bc538;
 }
 
@@ -89,4 +104,143 @@ body {
   & span:nth-child(2) {
     font-size: 12px;
   }
+}
+
+//completed page
+
+.completed__inner{
+  padding: 70px 0 200px;
+}
+
+.completed__body {
+  display: flex;
+}
+
+.completed__column {
+  flex: 0 0 45%;
+  padding-left: 35px;
+
+  &:first-child {
+    flex: 0 0 55%;
+    padding-right: 35px;
+  }
+}
+
+.test__results {
+  display: flex;
+  margin-bottom: 45px;
+}
+
+.test__item {
+  display: flex;
+  align-items: flex-start;
+  flex: 0 0 50%;
+  padding-right: 25px;
+}
+
+.test__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.test__img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.test__name {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.test__result {
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+
+  & span {
+    font-size: 36px;
+  }
+}
+
+.certificate {
+  position: relative;
+  min-height: 360px;
+  color: #576161;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 72px;
+  user-select: none;
+}
+
+.certificate__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.certificate__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  max-width: 325px;
+  margin: 0 auto 50px;
+}
+
+.certificate__level{
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.reward__name{
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.user__name{
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.certificate__text{
+  line-height: 1.2;
+  & span{
+    font-size: 20px;
+  }
+}
+
+.completed__title{
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+
+.completed__text{
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }

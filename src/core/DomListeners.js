@@ -8,7 +8,7 @@ export class DomListeners {
     this.listeners.forEach((listener) => {
       const listenerPrefixOn = addPrefixOn(listener)
 
-      if(!this[listenerPrefixOn]){
+      if (!this[listenerPrefixOn]) {
         throw new Error(`${listenerPrefixOn} not declared`)
       }
 
@@ -17,8 +17,8 @@ export class DomListeners {
     })
   }
 
-  removeListeners(){
-    this.listeners.forEach(listener =>{
+  removeListeners() {
+    this.listeners.forEach((listener) => {
       const listenerPrefixOn = addPrefixOn(listener)
       this.$root.removeEventListener(listener, this[listenerPrefixOn])
     })

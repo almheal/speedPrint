@@ -3,7 +3,7 @@ import { startPrintTemplate } from './print.modal.template'
 
 export class StartPrintModal extends Modal {
   constructor($root) {
-    super($root, ['click'])
+    super($root, {listeners: ['click']})
     this.$root = $root
   }
 
@@ -13,19 +13,12 @@ export class StartPrintModal extends Modal {
     return this.$root
   }
 
+
   onClick(e) {
     if (e.target.dataset.buttonStart) {
       const print = document.querySelector('[data-print]')
       print.dataset.print = 'true'
-      this.destroy()
+      super.destroy()
     }
-  }
-
-  init() {
-    super.initListeners()
-  }
-
-  destroy(){
-    super.destroy()
   }
 }

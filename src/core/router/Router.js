@@ -30,8 +30,6 @@ export class Router {
       }
     })
 
-    // if(!route) return
-
     const Page = route.component
 
     this.page = new Page()
