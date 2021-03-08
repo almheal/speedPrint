@@ -1,9 +1,4 @@
-const checkKeyCode = (code) => {
-  const findKey = unnecessaryCodes.find((item) => item === code)
-  return findKey ? false : true
-}
-
-const unnecessaryCodes = [
+export const keyCodes = [
   112,
   113,
   114,
@@ -42,5 +37,3 @@ const unnecessaryCodes = [
   40,
   39,
 ]
-
-export default checkKeyCode

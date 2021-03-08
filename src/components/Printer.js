@@ -1,8 +1,19 @@
-import {$} from '@core/dom'
+import { $ } from '@core/dom'
+import { createStore } from '@core/createStore'
+import { rootReducer } from '@/store/rootReducer'
+import { StoreSubscriber } from '../core/StoreSubscriber'
+
+const store = createStore(rootReducer, {
+  result: {
+    speed: 0,
+    accuracy: 0
+  },
+})
 
 export class Printer {
   constructor({ components }) {
     this.components = components || []
+    this.subscriber = new StoreSubscriber(store)
   }
 
   getRoot() {
@@ -23,7 +34,11 @@ export class Printer {
         })
       }
 
-      const component = new Component($el)
+      const componentOptions = {
+        store,
+      }
+
+      const component = new Component($el, componentOptions)
       $root.append(component.toHTML())
       return component
     })
@@ -37,9 +52,10 @@ export class Printer {
         component.init()
       }
     })
+    this.subscriber.subscribeComponents(this.components)
   }
 
-  destroy(){
-    this.components.forEach(component => component.destroy())
+  destroy() {
+    this.components.forEach((component) => component.destroy())
   }
 }

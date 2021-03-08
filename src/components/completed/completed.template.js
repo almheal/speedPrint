@@ -1,5 +1,5 @@
 export function completedTemplate(){
-  return `<div class="completed">
+  return `
   <div class="container">
     <div class="completed__inner">
       <div class="completed__body">
@@ -15,7 +15,7 @@ export function completedTemplate(){
               </div>
               <div class="test__content">
                 <div class="test__name">скорость</div>
-                <div class="test__result"><span>310</span> зн./мин</div>
+                <div class="test__result"><span data-speed></span> зн./мин</div>
               </div>
             </div>
             <div class="test__item">
@@ -28,7 +28,7 @@ export function completedTemplate(){
               </div>
               <div class="test__content">
                 <div class="test__name">точность</div>
-                <div class="test__result"><span>92,6</span> %</div>
+                <div class="test__result"><span data-accuracy></span> %</div>
               </div>
             </div>
           </div>
@@ -45,13 +45,13 @@ export function completedTemplate(){
                 <div class="user__name">Твое прекрасное имя</div>
                 <div class="certificate__text">
                   за печать на <span data-language>русском языке</span> со
-                  скоростью <span>310</span> зн./мин с точностью
-                  <span>92,7</span> %
+                  скоростью <span data-speed>0</span> зн./мин с точностью
+                  <span data-accuracy>0</span> %
                 </div>
               </div>
             </div>
             <div class="certificate-bottom">
-              <div class="certificate__date">07 марта 2021</div>
+              <div class="certificate__date" data-certificate-date></div>
             </div>
           </div>
         </div>
@@ -70,6 +70,5 @@ export function completedTemplate(){
         </div>
       </div>
     </div>
-  </div>
-</div>`
+  </div>`
 }

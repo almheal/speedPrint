@@ -4,6 +4,8 @@ export class PrinterComponent extends DomListeners{
   constructor($root, options = {}){
     super($root, options.listeners)
     this.$root = $root
+    this.store = options.store
+    this.subscribe = options.subscribe || []
   }
 
   toHTML(){
@@ -12,6 +14,22 @@ export class PrinterComponent extends DomListeners{
 
   init(){
     this.initListeners()
+  }
+
+  $dispatch(action){
+    this.store.dispatch(action)
+  }
+
+  storeChanged(){
+
+  }
+
+  $getState(){
+    return this.store.getState()
+  }
+
+  isWatching(key){
+    return this.subscribe.includes(key)
   }
 
 

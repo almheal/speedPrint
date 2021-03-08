@@ -2,8 +2,8 @@ import { Modal } from '@/components/modal/Modal'
 import { startPrintTemplate } from './print.modal.template'
 
 export class StartPrintModal extends Modal {
-  constructor($root) {
-    super($root, {listeners: ['click']})
+  constructor($root, options = {}) {
+    super($root, {...options, listeners: ['click']})
     this.$root = $root
   }
 

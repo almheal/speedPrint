@@ -19,6 +19,14 @@ class Dom {
   html($el,value){
     $el.innerHTML = value
   }
+
+  findAll(el, selector){
+    if(el){
+      return el.querySelectorAll(selector)
+    }else{
+      return document.querySelectorAll(selector)
+    }
+  }
 }
 
 export const $ = new Dom()

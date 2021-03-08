@@ -5,7 +5,7 @@ export class Header extends PrinterComponent{
   static className = 'header'
   static tag = 'header'
 
-  constructor($root){
+  constructor($root, options = {}){
     super($root)
     this.$root = $root
   }

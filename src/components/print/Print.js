@@ -1,20 +1,25 @@
-import randomItemArray from '@/utils/randomItemArray'
-import checkKeyCode from '@/utils/checkKeyCode'
+import { randomItemArray } from '@core/utils'
+import { checkKeyCode } from '@core/utils'
+import { todayDate } from '@core/utils'
 import { printTemplate } from './print.template'
 import { textPrint } from '@/mocks/text'
-import {$} from '@core/dom'
+import { $ } from '@core/dom'
 import { PrinterComponent } from '../../core/PrinterComponent'
+import * as actions from '@/store/actions'
 
 export class Print extends PrinterComponent {
   static className = 'print'
   static tag = 'section'
 
-  constructor($root) {
-    super($root)
+  constructor($root, options) {
+    super($root, options)
     this.$root = $root
-    this.print = null
-    this.accuracy = null
+    this.$accuracy = null
+    this.$speed = null
     this.speed = null
+    this.accuracy = null
+    this.print = null
+    this.time = null
     this.printText = this.printText.bind(this)
     this.preventDefaultKey = this.preventDefaultKey.bind(this)
   }
@@ -25,47 +30,52 @@ export class Print extends PrinterComponent {
     super.init()
   }
 
-
-  preventDefaultKey(e){
-    if(e.code === 'Space' || e.code === 'Tab'){
+  preventDefaultKey(e) {
+    if (e.code === 'Space' || e.code === 'Tab') {
       e.preventDefault()
     }
   }
 
   // listener keyup print
   printText(e) {
-    if(!this.print.dataset.print) return
-    if(!checkKeyCode(e.keyCode)) return
+    if (!this.print.dataset.print) return
+    if (!checkKeyCode(e.keyCode)) return
 
     const activeSymbol = this.print.querySelector('.active')
     const key = e.key
 
-    if(!activeSymbol.nextElementSibling){
+    if (!activeSymbol.nextElementSibling) {
+      const data = { speed: this.speed, accuracy: this.accuracy, date: todayDate() }
+      this.$dispatch(actions.calculateResult(data))
       window.location.href = '/#completed'
       return
     }
 
+    if (!this.time) {
+      this.time = this.speedScore()
+    }
 
-    if(key === activeSymbol.textContent){
+    this.speed = this.time()
+
+    if (key === activeSymbol.textContent) {
       this.changeNextSymbol(activeSymbol)
-      this.speed.textContent = this.speedScore()
-      this.accuracy.textContent = this.accuracyScore()
-
-    }else{
+      this.$speed.textContent = this.speed
+      this.accuracy = this.accuracyScore()
+      this.$accuracy.textContent = this.accuracy
+    } else {
       $.toggleClass(activeSymbol, 'add', ['error'])
-      this.accuracy.textContent = this.accuracyScore(true)
+      this.accuracy = this.accuracyScore(true)
+      this.$accuracy.textContent = this.accuracy
     }
   }
 
-
   // change active symbol
-  changeNextSymbol(activeSymbol){
+  changeNextSymbol(activeSymbol) {
     const nextSymbol = activeSymbol.nextElementSibling
     $.toggleClass(activeSymbol, 'remove', ['active'])
     $.toggleClass(activeSymbol, 'add', ['color-green'])
     $.toggleClass(nextSymbol, 'add', ['active'])
   }
-
 
   // select random text from array
   startingText() {
@@ -76,34 +86,36 @@ export class Print extends PrinterComponent {
     const spanList = this.transformToSpan(randomText)
 
     this.print = textEl
-    this.speed = speed
-    this.accuracy = accuracy
-
-    this.speedScore = this.speedScore()
+    this.$speed = speed
+    this.$accuracy = accuracy
     this.accuracyScore = this.accuracyScore()
 
     textEl.textContent = ''
     textEl.append(spanList)
   }
 
-
   //calculate speed print
-  speedScore(){
-    const date = Date.now() / 1000
-    let lettersLength = 1
+  speedScore() {
+    const time = Date.now() / 1000
+    let lettersLength = 0
 
-    return function (){
-      const time = Date.now() / 1000 - date
+    return function () {
+      if (!lettersLength) {
+        lettersLength++
+        return 0
+      }
+      const difference = Date.now() / 1000 - time
 
       lettersLength++
 
-      const score = Math.ceil(60 / time * lettersLength)
-      return score < 0 ? 0 : score
+      const score = Math.ceil((60 / difference) * lettersLength)
+
+      return score <= 0 ? 0 : score
     }
   }
 
   //calculate accuracy print
-  accuracyScore(){
+  accuracyScore() {
     let lengthLetters = 0
     let wrongPrint = 0
 
@@ -114,27 +126,26 @@ export class Print extends PrinterComponent {
 
       lengthLetters++
 
-      let accuracyScore
+      let accuracy
 
       if (wrongPrint) {
-         accuracyScore = Math.ceil(100 - 100 * wrongPrint / lengthLetters)
+        accuracy = Math.ceil(100 - (100 * wrongPrint) / lengthLetters)
       } else {
-        accuracyScore = 100
+        accuracy = 100
       }
 
-      return accuracyScore
+      return accuracy
     }
   }
 
-
   // transform text to span
-  transformToSpan(text){
+  transformToSpan(text) {
     const splitText = text.trim().split('')
     const fragment = document.createDocumentFragment()
 
-    splitText.forEach((letter, index) =>{
-      const span = $.createElement({tag: 'span', text: letter})
-      if(index === 0){
+    splitText.forEach((letter, index) => {
+      const span = $.createElement({ tag: 'span', text: letter })
+      if (index === 0) {
         $.toggleClass(span, 'add', ['active'])
       }
       fragment.append(span)
@@ -151,8 +162,7 @@ export class Print extends PrinterComponent {
     return this.$root
   }
 
-
-  destroy(){
+  destroy() {
     window.removeEventListener('keydown', this.preventDefaultKey)
     window.removeEventListener('keyup', this.printText)
     super.destroy()
