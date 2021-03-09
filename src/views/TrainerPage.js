@@ -1,13 +1,12 @@
 import {Printer} from '@/components/Printer'
 import {Header} from '@/components/header/Header'
-import {Print} from '@/components/print/Print'
-import { StartPrintModal } from '@/components/printModal/StartPrintModal'
+import { Trainer } from '../components/trainer/Trainer'
 
-export class HomePage{
+export class TrainerPage{
 
   getRoot(){
     this.printer = new Printer({
-      components: [Header, Print, StartPrintModal]
+      components: [Header, Trainer]
     })
 
     return this.printer.getRoot()

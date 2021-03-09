@@ -10,23 +10,6 @@
     color: #9b9b9b;
     padding: 0 15px 0 25px;
     cursor: pointer;
-    &::after{
-      content: '';
-      width: calc(100% - 40px);
-      height: 2px;
-      background-color: #9b9b9b;
-      position: absolute;
-      left: 25px;
-      bottom: -10px;
-      opacity: 0;
-      pointer-events: none;
-      transition: .3s;
-    }
-    &:hover::after{
-      bottom: -4px;
-      opacity: 1;
-      transition: .3s;
-    }
   }
 
   & .select__dropdown{

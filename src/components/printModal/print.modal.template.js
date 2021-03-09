@@ -2,7 +2,7 @@
 
 export function startPrintTemplate(){
   return `<div class="modal__body">
-  <div class="language__select" data-select>
+  <div class="language__select line-hover" data-select>
   </div>
   <div class="modal__icon">
     <img

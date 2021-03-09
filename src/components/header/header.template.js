@@ -5,7 +5,7 @@ export function headerTemplate(){
     <nav class="menu">
       <ul class="menu__list">
         <li class="menu__item">
-          <a class="menu-link" href="#">тренажер</a>
+          <a class="menu-link" href="#trainer">тренажер</a>
         </li>
         <li class="menu__item">
           <a class="menu-link" href="#">тестирование</a>

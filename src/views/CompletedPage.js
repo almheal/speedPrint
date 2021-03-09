@@ -1,9 +1,8 @@
-import {Page} from '@core/router/Page'
 import {Printer} from '@/components/Printer'
 import {Header} from '@/components/header/Header'
 import { Completed } from '../components/completed/Completed'
 
-export class CompletedPage extends Page{
+export class CompletedPage{
 
   getRoot(){
 
