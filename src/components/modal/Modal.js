@@ -7,4 +7,6 @@ export class Modal extends PrinterComponent{
     super($root, options)
     this.$root = $root
   }
+
+  
 }

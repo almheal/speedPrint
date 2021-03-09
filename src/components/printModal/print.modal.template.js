@@ -1,5 +1,9 @@
+
+
 export function startPrintTemplate(){
   return `<div class="modal__body">
+  <div class="language__select" data-select>
+  </div>
   <div class="modal__icon">
     <img
       class="modal__icon-img"
