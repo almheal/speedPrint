@@ -2,8 +2,8 @@ import './assets/styles/scss/index.scss'
 import { Router } from './core/router/Router'
 import { CompletedPage } from './views/CompletedPage'
 import { HomePage } from './views/HomePage'
+import { LearnPage } from './views/LearnPage'
 import { TrainerPage } from './views/TrainerPage'
-
 
 
 const router = new Router('#app',[
@@ -18,5 +18,9 @@ const router = new Router('#app',[
   {
     path: '/trainer',
     component: TrainerPage
+  },
+  {
+    path: '/learn',
+    component: LearnPage
   }
 ])

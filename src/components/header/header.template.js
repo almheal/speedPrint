@@ -11,7 +11,7 @@ export function headerTemplate(){
           <a class="menu-link" href="#">тестирование</a>
         </li>
         <li class="menu__item">
-          <a class="menu-link" href="#">обучение</a>
+          <a class="menu-link" href="#learn">обучение</a>
         </li>
         <li class="menu__item">
           <a class="menu-link" href="#">рейтинг</a>
