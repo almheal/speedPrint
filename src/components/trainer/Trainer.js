@@ -9,6 +9,7 @@ export class Trainer extends PrinterComponent{
     this.$root = $root
   }
 
+  //html template component
   toHTML(){
     const template = trainerTemplate()
     this.$root.insertAdjacentHTML('afterbegin', template)

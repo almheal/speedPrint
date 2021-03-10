@@ -11,6 +11,7 @@ export class StartPrintModal extends Modal {
     this.store = options.store
   }
 
+  //html template
   toHTML() {
     const template = startPrintTemplate()
     this.$root.insertAdjacentHTML('afterbegin', template)
@@ -27,11 +28,13 @@ export class StartPrintModal extends Modal {
       items: printLanguages,
       placeholder: placeholderSelect
     })
+
     this.select.init()
 
     return this.$root
   }
 
+  // handler start typing, destroy modal
   onClick(e) {
     if (e.target.dataset.buttonStart) {
       const print = document.querySelector('[data-print]')

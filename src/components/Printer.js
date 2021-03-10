@@ -3,6 +3,7 @@ import { createStore } from '@core/createStore'
 import { rootReducer } from '@/store/rootReducer'
 import { StoreSubscriber } from '../core/StoreSubscriber'
 
+//create store
 const store = createStore(rootReducer, {
   result: {
     speed: 0,
@@ -16,6 +17,7 @@ export class Printer {
     this.subscriber = new StoreSubscriber(store)
   }
 
+  // handling components, create template component and add root element
   getRoot() {
     const $root = $.createElement({ tag: 'div', classNames: ['printer'] })
 
@@ -46,6 +48,7 @@ export class Printer {
     return $root
   }
 
+  //init subscribe to store, init listeners
   init() {
     this.components.forEach((component) => {
       if (component.init) {
@@ -55,6 +58,7 @@ export class Printer {
     this.subscriber.subscribeComponents(this.components)
   }
 
+  //destroy all components
   destroy() {
     this.components.forEach((component) => component.destroy())
   }

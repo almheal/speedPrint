@@ -14,6 +14,7 @@ export class PrintLanguage extends Select{
     super.init()
   }
 
+  // handler, change language text
   onClick(e){
     super.onClick(e)
     if(e.target.dataset.selectItem){

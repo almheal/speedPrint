@@ -17,12 +17,14 @@ export class Print extends PrinterComponent {
     this.printText = this.printText.bind(this)
   }
 
+
   init() {
     window.addEventListener('keyup', this.printText)
     window.addEventListener('keydown', this.preventDefaultKey)
     super.init()
   }
 
+  //prevent keys 
   preventDefaultKey(e) {
     if (e.code === 'Space' || e.code === 'Tab') {
       e.preventDefault()
@@ -32,10 +34,10 @@ export class Print extends PrinterComponent {
   // listener keyup print
   printText(e) {
     if(checkKeyCode(e.keyCode)) return
-    const activeSymbol = this.$print.querySelector('.active')
+    const currentSymbol = this.$print.querySelector('.active')
     const key = e.key
 
-    if(!activeSymbol.nextElementSibling){
+    if(!currentSymbol.nextElementSibling){
       this.finishPrint()
       return
     }
@@ -48,38 +50,41 @@ export class Print extends PrinterComponent {
       this.accuracyFunc = this.accuracyScore()
     }
 
-    if(activeSymbol.textContent === key){
+    if(currentSymbol.textContent === key){
       this.prevSymbolsLength++
-      this.successPrint(activeSymbol)
+      this.successPrint(currentSymbol)
       this.speed = this.speedFunc()
       this.accuracy = this.accuracyFunc()
     }else{
-      this.errorPrint(activeSymbol, key)
+      this.errorPrint(currentSymbol, key)
       this.accuracy = this.accuracyFunc(true)
     }
 
 
   }
 
-  errorPrint(activeSymbol, pressKey){
-    if(!activeSymbol.classList.contains('error')){
-      $.toggleClass(activeSymbol, 'add', ['error'])
+  // handling an incorrectly pressed key
+  errorPrint(currentSymbol, pressKey){
+    if(!currentSymbol.classList.contains('error')){
+      $.toggleClass(currentSymbol, 'add', ['error'])
     }
   }
 
-  successPrint(activeSymbol){
-    this.changeNextSymbol(activeSymbol)
+  // handling a correctly pressed key
+  successPrint(currentSymbol){
+    this.changeNextSymbol(currentSymbol)
   }
 
+  //handling finish typing text
   finishPrint(){
 
   }
 
   // change active symbol
-  changeNextSymbol(activeSymbol) {
-    const nextSymbol = activeSymbol.nextElementSibling
-    $.toggleClass(activeSymbol, 'remove', ['active'])
-    $.toggleClass(activeSymbol, 'add', ['prev'])
+  changeNextSymbol(currentSymbol) {
+    const nextSymbol = currentSymbol.nextElementSibling
+    $.toggleClass(currentSymbol, 'remove', ['active'])
+    $.toggleClass(currentSymbol, 'add', ['prev'])
     $.toggleClass(nextSymbol, 'add', ['active'])
   }
 

@@ -15,6 +15,8 @@ export class TutorPrint extends Print{
     this.$keyboard = null
   }
 
+
+  //html template component
   toHTML(){
     const template = tutorTemplate()
     this.$root.insertAdjacentHTML('afterbegin', template)
@@ -25,17 +27,19 @@ export class TutorPrint extends Print{
     this.renderText(this.$print, this.$print.textContent)
 
     const firstKey = this.searchCurrentKey()
-    this.toggleClassKey(firstKey.textContent,'add', ['active'])
+    this.toggleClassOnKeyboard(firstKey.textContent,'add', ['active'])
 
     return this.$root
   }
 
+  //render starting text
   renderText($el, text){
     const spanText = this.transformToSpan(text)
     $el.innerHTML = ''
     $el.append(spanText)
   }
 
+  //handler keydown, if key !== selected language, throw danger modal
   printText(e){
     const key = e.key
     if(this.anotherLanguageKey(key)){
@@ -45,18 +49,20 @@ export class TutorPrint extends Print{
     super.printText(e)
   }
 
+  // handling an incorrectly key pressed, add keyboard animation error
   errorPrint(activeSymbol, errorKey){
     super.errorPrint(activeSymbol, errorKey)
     if(errorKey === ' '){
       errorKey = 'space'
     }
-    this.toggleClassKey(errorKey, 'add', ['error'])
+    this.toggleClassOnKeyboard(errorKey, 'add', ['error'])
     setTimeout(()=>{
-      this.toggleClassKey(errorKey, 'remove', ['error'])
+      this.toggleClassOnKeyboard(errorKey, 'remove', ['error'])
     }, 150)
   }
 
 
+  //handling a correctly pressed key
   successPrint(activeSymbol){
     super.successPrint(activeSymbol)
     let nextKey = activeSymbol.nextElementSibling.textContent
@@ -69,10 +75,11 @@ export class TutorPrint extends Print{
     if(currentKey === ' '){
       currentKey = 'space'
     }
-    this.toggleClassKey(currentKey, 'remove', ['active'])
-    this.toggleClassKey(nextKey, 'add', ['active'])
+    this.toggleClassOnKeyboard(currentKey, 'remove', ['active'])
+    this.toggleClassOnKeyboard(nextKey, 'add', ['active'])
   }
 
+  //create danger modal, when user pressed key !== selected language
   createDangerModal(){
     const checkModal = this.$root.querySelector('.tutor__modal')
     if(checkModal) return
@@ -81,20 +88,24 @@ export class TutorPrint extends Print{
     this.$root.append(dangerModal.init())
   }
 
-  searchKey(key){
+  // search key in keyboard
+  searchKeyOnKeyboard(key){
     const $key = this.$keyboard.querySelector(`[data-key="${key}"]`)
     return $key
   }
 
-  toggleClassKey(key, method,  classNames){
-    const $key = this.searchKey(key)
+  //add or remove classNames key on keyboard
+  toggleClassOnKeyboard(key, method,  classNames){
+    const $key = this.searchKeyOnKeyboard(key)
     $.toggleClass($key, method, classNames)
   }
 
+  //search current key
   searchCurrentKey(){
     return this.$print.querySelector('.active')
   }
 
+  //check language pressed key
   anotherLanguageKey(key){
     return englishKeys.includes(key.toLowerCase())
   }

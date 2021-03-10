@@ -9,6 +9,7 @@ export class TutorModal extends Modal{
     this.$root = $root
   }
 
+  //html template component
   toHTML(){
     const template = tutorModal()
     this.$root.insertAdjacentHTML('afterbegin', template)
@@ -21,6 +22,7 @@ export class TutorModal extends Modal{
     return this.toHTML()
   }
 
+  //handler continue typing text
   onClick(e){
     if(e.target.dataset.continue){
       super.destroy()

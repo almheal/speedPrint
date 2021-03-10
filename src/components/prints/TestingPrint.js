@@ -3,7 +3,8 @@ import { testingPrintTemplate } from './testing.template'
 import { textPrintRu } from '@/mocks/textRu'
 import { textPrintEn } from '@/mocks/textEn'
 import { randomItemArray } from '@core/utils'
-import { calculateResult } from '../../store/actions'
+import { calculateResult} from '../../store/actions'
+import { todayDate } from '../../core/utils'
 
 export class TestingPrint extends Print {
   static className = 'testing__print'
@@ -16,19 +17,21 @@ export class TestingPrint extends Print {
     this.subscribe = ['languagePrint']
   }
 
+  //render html template
   toHTML() {
     const template = testingPrintTemplate()
     this.$root.insertAdjacentHTML('afterbegin', template)
 
     const {languagePrint} = this.$getState()
-    const defaultLanguage = languagePrint || 'ru'
+    const defaultLanguage = languagePrint ? languagePrint : 'ru'
 
-    const $print = this.$root.querySelector('[data-print]')
-    this.renderText($print, defaultLanguage)
+    this.$print = this.$root.querySelector('[data-print]')
+    this.renderText(this.$print, defaultLanguage)
 
     return this.$root
   }
 
+  //render starting text for typing
   renderText($el, language){
     let randomText
 
@@ -47,11 +50,13 @@ export class TestingPrint extends Print {
     return randomText
   }
 
+  //subscribe changed store
   storeChanged({languagePrint}){
     this.$print = document.querySelector('[data-print]')
     this.renderText(this.$print, languagePrint)
   }
 
+  // keydown handler
   printText(e) {
     if(!this.$print.dataset.print) return
     super.printText(e)
@@ -63,6 +68,7 @@ export class TestingPrint extends Print {
     this.accuracyToHTML(this.accuracy)
   }
 
+  // add speed score in html
   speedToHTML(speed){
     const $speed = this.$root.querySelector('[data-speed]')
     if(speed === 0) return
@@ -74,10 +80,12 @@ export class TestingPrint extends Print {
     $accuracy.textContent = accuracy
   }
 
+  //handling finish typing text
   finishPrint(){
     clearInterval(this.speedInterval)
     window.location.href = '/#completed'
-    this.$dispatch(calculateResult({speed: this.speed, accuracy: this.accuracy}))
+    const date = todayDate()
+    this.$dispatch(calculateResult({speed: this.speed, accuracy: this.accuracy, date}))
   }
 
 }
