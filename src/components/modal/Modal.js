@@ -8,5 +8,4 @@ export class Modal extends PrinterComponent{
     this.$root = $root
   }
 
-  
 }

@@ -3,6 +3,7 @@ import { Router } from './core/router/Router'
 import { CompletedPage } from './views/CompletedPage'
 import { HomePage } from './views/HomePage'
 import { LearnPage } from './views/LearnPage'
+import { PrintTutorPage } from './views/PrintTutorPage'
 import { TrainerPage } from './views/TrainerPage'
 
 
@@ -22,5 +23,9 @@ const router = new Router('#app',[
   {
     path: '/learn',
     component: LearnPage
+  },
+  {
+    path: '/typing-tutor',
+    component: PrintTutorPage
   }
 ])

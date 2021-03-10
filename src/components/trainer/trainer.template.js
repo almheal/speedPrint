@@ -10,7 +10,7 @@ export function trainerTemplate(){
         <div class="trainer__text">
           <p>Научись быстро печатать с клавиатурным тренажером Ratatype. А уроки слепой печати помогут тебе использовать все 10 пальцев.</p>
         </div>
-        <a class="button-primary" href="#">начать печатать</a>
+        <a class="button-primary" href="#typing-tutor">начать печатать</a>
       </div>
     </div>
     <div class="learn__row">
