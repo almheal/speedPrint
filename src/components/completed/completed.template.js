@@ -44,7 +44,7 @@ export function completedTemplate(){
                 <div class="reward__name">награждается</div>
                 <div class="user__name">Твое прекрасное имя</div>
                 <div class="certificate__text">
-                  за печать на <span data-language>русском языке</span> со
+                  за печать на <span data-language></span> со
                   скоростью <span data-speed>0</span> зн./мин с точностью
                   <span data-accuracy>0</span> %
                 </div>

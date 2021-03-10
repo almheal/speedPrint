@@ -7,7 +7,7 @@ export class Select extends PrinterComponent{
     super($root, {...options, listeners: ['click']})
     this.$root = $root
     this.$dropdown = null
-    this.placeholder = options.items[0] || ''
+    this.placeholder = options.placeholder
     this.items = options.items
   }
 
@@ -29,7 +29,7 @@ export class Select extends PrinterComponent{
       this.$dropdown.classList.toggle('open')
     }
     if(e.target.dataset.selectItem){
-      const value = e.target.dataset.selectItem
+      const value = e.target.textContent
       const placeholder = this.$root.querySelector('[data-select-placeholder]')
       this.placeholder = value
       placeholder.textContent = value

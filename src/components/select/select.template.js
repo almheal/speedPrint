@@ -9,5 +9,5 @@ export function selectTemplate(placeholder, items){
 }
 
 function createItemSelect(items){
-  return items.map(item => `<li class="select__item" data-select-item="${item}">${item}</li>`).join('')
+  return items.map(item => `<li class="select__item" data-select-item="${item.value || item.name}">${item.name}</li>`).join('')
 }

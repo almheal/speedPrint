@@ -17,15 +17,22 @@ export class Completed extends PrinterComponent {
   }
 
   init() {
-    const { result } = this.$getState()
-    this.changeCompletedResult(result)
+    const { result, languagePrint } = this.$getState()
+    this.changeCompletedResult(result, languagePrint)
     super.init()
   }
 
-  changeCompletedResult({ speed, accuracy, date }) {
+  changeCompletedResult({ speed, accuracy, date }, language) {
     const speedItems = $.findAll(this.$root, '[data-speed]')
     const accuracyItems = $.findAll(this.$root, '[data-accuracy]')
     const dateCerfiticate = this.$root.querySelector('[data-certificate-date]')
+    const languageItem = this.$root.querySelector('[data-language]')
+    if(language === 'en'){
+      languageItem.textContent = 'английском языке'
+    }
+    if(language === 'ru'){
+      languageItem.textContent = 'русском языке'
+    }
     speedItems.forEach((item) => (item.textContent = speed))
     accuracyItems.forEach((item) => (item.textContent = accuracy))
     dateCerfiticate.textContent = date

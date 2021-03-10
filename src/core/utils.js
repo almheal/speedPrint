@@ -8,7 +8,7 @@ export function randomItemArray(arr){
 
 export function checkKeyCode(code){
   const findKey = keyCodes.find((item) => item === code)
-  return findKey ? false : true
+  return findKey ? true : false
 }
 
 export function isEqual(a,b){

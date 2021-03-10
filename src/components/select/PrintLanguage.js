@@ -7,6 +7,7 @@ export class PrintLanguage extends Select{
     super($root, {...options, listeners: ['click']})
     this.$root = $root
     this.items = options.items
+    this.placeholder = options.placeholder
   }
 
   init(){
@@ -16,7 +17,7 @@ export class PrintLanguage extends Select{
   onClick(e){
     super.onClick(e)
     if(e.target.dataset.selectItem){
-      this.$dispatch(languagePrint(this.placeholder))
+      this.$dispatch(languagePrint(e.target.dataset.selectItem))
     }
   }
 }
