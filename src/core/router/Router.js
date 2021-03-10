@@ -5,9 +5,9 @@ export class Router {
   constructor(selector, routes) {
     this.$placeholder = document.querySelector(selector)
     this.routes = routes
-
+    this.beforeEachRender = null
+    this.isNext = null
     this.changePageHandler = this.changePageHandler.bind(this)
-
     this.init()
   }
 
@@ -17,6 +17,11 @@ export class Router {
   }
 
   changePageHandler() {
+    if(this.beforeEachRender){
+      this.beforeEachRender(ActiveRoute.path, this.next.bind(this))
+      if(!this.isNext) return
+    }
+
     if (this.page) {
       this.page.destroy()
     }
@@ -34,8 +39,36 @@ export class Router {
 
     this.page = new Page()
 
-
     this.$placeholder.append(this.page.getRoot())
     this.page.afterRender()
+    this.addActiveLinks(route.path)
+    this.isNext = false
+  }
+
+  beforeEach(fn){
+    this.beforeEachRender = fn.bind(this)
+  }
+
+  next(){
+    this.isNext = true
+  }
+
+  redirect(url){
+    window.location.href = url
+  }
+
+  addActiveLinks(activeRoute){
+    const links = document.querySelectorAll('a')
+    const routeWithoutHash = activeRoute.slice(1)
+    links.forEach(link => {
+      const href = link.getAttribute('href').slice(1)
+      if(href === routeWithoutHash){
+        $.toggleClass(link, 'add', ['active-route'])
+      }
+    })
+  }
+
+  destroy(){
+    window.removeEventListener('hashchange', this.changePageHandler)
   }
 }

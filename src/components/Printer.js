@@ -60,6 +60,7 @@ export class Printer {
 
   //destroy all components
   destroy() {
+    this.subscriber.unsubscribeFromStore()
     this.components.forEach((component) => component.destroy())
   }
 }

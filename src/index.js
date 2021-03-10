@@ -35,3 +35,12 @@ const router = new Router('#app',[
     component: TutorResultPage
   }
 ])
+
+router.beforeEach((to, next)=>{
+  if(to === 'completed'){
+    router.redirect('/')
+  }else{
+    next()
+  }
+})
+
