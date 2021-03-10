@@ -494,3 +494,60 @@ body {
     opacity: 1;
   }
 }
+
+//tutor result
+
+.result__inner{
+  padding: 60px 0 0;
+}
+
+.result__row{
+  display: flex;
+  align-items: flex-start;
+}
+
+.result__column{
+  flex: 0 0 50%;
+  position: relative;
+  &:last-child{
+    padding-left: 40px;
+  }
+}
+
+.result__content{
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.result__value{
+  color: #6b7886;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin-bottom: 20px;
+  & span{
+    display: inline-block;
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}
+
+.result__text{
+  line-height: 1.4;
+  margin-bottom: 20px;
+  color: #5c5c5c;
+  font-size: 16px;
+}
+
+.result__img-wrapper{
+  position: relative;
+  height: 564px;
+}
+
+.result__img{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
