@@ -3,7 +3,7 @@ import { tutorTemplate } from './tutor.template'
 import {$} from '@core/dom'
 import {englishKeys} from '@/mocks/englishKeys'
 import { TutorModal } from './tutorDangerModal'
-import {calculateResult} from '@/store/actions'
+import { changeTutorResult } from '../../store/actions'
 
 export class TutorPrint extends Print{
   static className = 'tutor__print'
@@ -82,7 +82,7 @@ export class TutorPrint extends Print{
 
   finishPrint(){
     window.location.href = '/#tutor-result'
-    this.$dispatch(calculateResult({speed: this.speed, accuracy: this.accuracy}))
+    this.$dispatch(changeTutorResult(this.speed))
   }
 
   //create danger modal, when user pressed key !== selected language

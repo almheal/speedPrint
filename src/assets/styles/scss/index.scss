@@ -79,10 +79,12 @@ body {
 }
 
 .info__name {
+  display: flex;
+  align-items: center;
   color: #b5bbc2;
   font-size: 12px;
   text-transform: uppercase;
-  padding: 5px 0;
+  padding: 8px 0;
 }
 
 .info__number {
@@ -92,6 +94,12 @@ body {
   & span:nth-child(2) {
     font-size: 12px;
   }
+}
+
+.info__icon{
+  width: 23px;
+  height: 23px;
+  margin-right: 7px;
 }
 
 //completed page

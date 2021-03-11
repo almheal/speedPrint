@@ -15,9 +15,9 @@ export class TutorResult extends PrinterComponent{
     this.$root.insertAdjacentHTML('afterbegin', template)
     const $speed = this.$root.querySelector('[data-speed]')
 
-    const {result} = this.$getState()
+    const {tutorResult} = this.$getState()
 
-    $speed.textContent = result.speed
+    $speed.textContent = tutorResult
 
     return this.$root
   }

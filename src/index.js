@@ -1,5 +1,5 @@
 import './assets/styles/scss/index.scss'
-
+import { store } from './components/Printer'
 import { Router } from './core/router/Router'
 import { CompletedPage } from './views/CompletedPage'
 import { HomePage } from './views/HomePage'
@@ -37,7 +37,10 @@ const router = new Router('#app',[
 ])
 
 router.beforeEach((to, next)=>{
-  if(to === 'completed'){
+  const {tutorResult, result} = store.getState()
+  if(to === 'tutor-result' && !tutorResult){
+    router.redirect('/#trainer')
+  }else if(to === 'completed' && !result.speed && !result.accuracy){
     router.redirect('/')
   }else{
     next()

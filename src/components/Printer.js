@@ -4,7 +4,7 @@ import { rootReducer } from '@/store/rootReducer'
 import { StoreSubscriber } from '../core/StoreSubscriber'
 
 //create store
-const store = createStore(rootReducer, {
+export const store = createStore(rootReducer, {
   result: {
     speed: 0,
     accuracy: 0

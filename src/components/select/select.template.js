@@ -1,6 +1,9 @@
 
 export function selectTemplate(placeholder, items){
-  return `<div class="select__input" data-select-placeholder="true">${placeholder}</div>
+  return `<div class="select__input" >
+  <img class="keyboard-small" src="../src/assets/img/keyboard_toggle.png" alt="keyboard"/>
+    <span data-select-placeholder="true">${placeholder}</span>
+  </div>
   <div class="select__dropdown" data-dropdown>
     <ul class="select__list">
       ${createItemSelect(items)}
