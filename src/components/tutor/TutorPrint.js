@@ -4,6 +4,7 @@ import {$} from '@core/dom'
 import {englishKeys} from '@/mocks/englishKeys'
 import { TutorModal } from './tutorDangerModal'
 import { changeTutorResult } from '../../store/actions'
+import { Keyboard } from '../Keyboard'
 
 export class TutorPrint extends Print{
   static className = 'tutor__print'
@@ -14,6 +15,7 @@ export class TutorPrint extends Print{
     this.$root = $root
     this.$print = null
     this.$keyboard = null
+    this.Keyboard = new Keyboard()
   }
 
 
@@ -23,12 +25,15 @@ export class TutorPrint extends Print{
     this.$root.insertAdjacentHTML('afterbegin', template)
 
     this.$print = this.$root.querySelector('[data-print]')
-    this.$keyboard = this.$root.querySelector('[data-keyboard]')
+
+    const wrapperKeyboard = this.$root.querySelector('[data-tutor-body]')
+    wrapperKeyboard.append(this.Keyboard.toHTML())
 
     this.renderText(this.$print, this.$print.textContent)
 
     const firstKey = this.searchCurrentKey()
-    this.toggleClassOnKeyboard(firstKey.textContent,'add', ['active'])
+
+    this.Keyboard.toggleClassOnKeyboard(firstKey.textContent, 'add', ['active'])
 
     return this.$root
   }
@@ -56,9 +61,9 @@ export class TutorPrint extends Print{
     if(errorKey === ' '){
       errorKey = 'space'
     }
-    this.toggleClassOnKeyboard(errorKey, 'add', ['error'])
+    this.Keyboard.toggleClassOnKeyboard(errorKey, 'add', ['error'])
     setTimeout(()=>{
-      this.toggleClassOnKeyboard(errorKey, 'remove', ['error'])
+      this.Keyboard.toggleClassOnKeyboard(errorKey, 'remove', ['error'])
     }, 150)
   }
 
@@ -76,10 +81,11 @@ export class TutorPrint extends Print{
     if(currentKey === ' '){
       currentKey = 'space'
     }
-    this.toggleClassOnKeyboard(currentKey, 'remove', ['active'])
-    this.toggleClassOnKeyboard(nextKey, 'add', ['active'])
+    this.Keyboard.toggleClassOnKeyboard(currentKey, 'remove', ['active'])
+    this.Keyboard.toggleClassOnKeyboard(nextKey, 'add', ['active'])
   }
 
+  // finish typing text
   finishPrint(){
     window.location.href = '/#tutor-result'
     this.$dispatch(changeTutorResult(this.speed))
@@ -92,18 +98,6 @@ export class TutorPrint extends Print{
     const $el = $.createElement({tag: 'div', classNames: [TutorModal.className]})
     const dangerModal = new TutorModal($el)
     this.$root.append(dangerModal.init())
-  }
-
-  // search key in keyboard
-  searchKeyOnKeyboard(key){
-    const $key = this.$keyboard.querySelector(`[data-key="${key}"]`)
-    return $key
-  }
-
-  //add or remove classNames key on keyboard
-  toggleClassOnKeyboard(key, method,  classNames){
-    const $key = this.searchKeyOnKeyboard(key)
-    $.toggleClass($key, method, classNames)
   }
 
   //search current key
