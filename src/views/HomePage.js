@@ -1,13 +1,13 @@
 import {Printer} from '@/components/Printer'
-import {Header} from '@/components/header/Header'
-import { StartPrintModal } from '@/components/printModal/StartPrintModal'
-import { TestingPrint } from '../components/prints/TestingPrint'
+import {Header} from '@/components/UI/Header'
+import {Footer} from '@/components/UI/Footer'
+import { Trainer } from '@/components/UI/Trainer'
 
 export class HomePage{
 
   getRoot(){
     this.printer = new Printer({
-      components: [Header, TestingPrint, StartPrintModal]
+      components: [Header, Trainer, Footer]
     })
 
     return this.printer.getRoot()

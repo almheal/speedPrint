@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
 @import './reset';
 
 //components
 @import './components/ui';
 @import './components/header';
+@import './components/footer';
 @import './components/modal-start';
 @import './components/select';
 @import './components/keyboard';
@@ -13,9 +14,14 @@ body {
   font-family: 'Rubik', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  background-color: #55c5ff;
+
   color: #fff;
-  height: 100vh;
+
+}
+
+.printer{
+  background-color: #55c5ff;
+  min-height: 100vh;
 }
 
 .container {
@@ -184,9 +190,13 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: -1;
+  z-index: 0;
   width: 100%;
   height: 100%;
+}
+
+.certificate__body{
+  position: relative;
 }
 
 .certificate__content {
@@ -254,6 +264,7 @@ body {
 }
 
 .trainer__column{
+  position: relative;
   flex: 0 0 50%;
   &:first-child{
     text-align: right;
@@ -261,12 +272,8 @@ body {
   }
 }
 
-.trainer__img{
-  max-width: 100%;
-}
-
 .trainer__title{
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 300;
   color: #fff;
   margin-bottom: 20px;
@@ -329,6 +336,7 @@ body {
   background-color: #fff;
   margin-top: 15px;
   padding: 40px;
+  margin-bottom: 40px;
   border-radius: 6px;
   & .button-primary{
     margin: 0 auto;
@@ -430,8 +438,16 @@ body {
 
 
 //tutor
+.section{
+  min-height: calc(100vh - 208px);
+}
+
 .tutor__inner{
   padding: 35px 0;
+}
+
+.tutor__body{
+  position: relative;
 }
 
 .tutor__header{
@@ -442,7 +458,15 @@ body {
   position: relative;
   max-width: 1720px;
   margin: 0 100px;
+}
 
+.hands{
+  position: absolute;
+  left: 50%;
+  bottom: -70px;
+  z-index: 100;
+  transform: translateX(-50%);
+  transition: .25s;
 }
 
 .input{
@@ -558,4 +582,143 @@ body {
   right: 0;
   top: 0;
   width: 100%;
+}
+
+
+//test
+
+
+.test__inner{
+  padding: 35px 0 0;
+  & .trainer__img{
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  & .trainer__column{
+    &:first-child{
+      height: 455px;
+    }
+  }
+}
+
+.rewards__body{
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 6px;
+}
+
+.rewards-top{
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.rewards__row{
+  display: flex;
+}
+
+.reward__column{
+  flex: 0 0 50%;
+  padding-right: 30px;
+  &:nth-child(2n){
+    padding-left: 30px;
+    padding-right: 0;
+  }
+}
+
+.rewards__naming{
+  display: flex;
+  padding: 5px 0;
+}
+
+.rewards__list{
+  display: flex;
+  padding: 10px 0;
+  border-top: 1px solid #dcdcdc;
+}
+
+.rewards__title{
+  color: #b5bbc2;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  flex: 0 0 28%;
+  &:first-child{
+    flex: 0 0 44%;
+  }
+  &:nth-child(3){
+    text-align: right;
+  }
+}
+
+.reward__medal{
+  flex: 0 0 44%;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5c5c5c;
+  text-transform: uppercase;
+}
+
+.reward__medal-img{
+  margin-right: 7px;
+}
+
+.reward__speed{
+  flex: 0 0 28%;
+  color: #5c5c5c;
+  font-size: 12px;
+  text-transform: uppercase;
+  & span{
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+.reward__accuracy{
+  flex: 0 0 28%;
+  color: #5c5c5c;
+  font-size: 12px;
+  text-align: right;
+  & span{
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+.reward__text{
+  line-height: 1.4;
+  font-size: 16px;
+  color: #5c5c5c;
+  font-weight: 300;
+  & p{
+    margin-bottom: 10px;
+  }
+}
+
+.rewards{
+  background-color: #f3f3f3;
+}
+
+.rewards__info{
+  display: flex;
+  padding: 30px 0 15px;
+  border-bottom: 1px solid #dcdcdc;
+  & .reward__column{
+    padding: 0 40px;
+  }
+}
+
+.info__title{
+  color: #000;
+  line-height: 1.2;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.rewards-bottom{
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

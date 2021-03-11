@@ -1,13 +1,13 @@
 import {Printer} from '@/components/Printer'
 import {Header} from '@/components/UI/Header'
-import {Footer} from '@/components/UI/Footer'
-import { TestCompleted } from '@/components/TestCompleted'
+import { Test } from '../components/UI/Test'
+import { Footer } from '../components/UI/Footer'
 
-export class CompletedPage{
+export class TestPage{
 
   getRoot(){
+    this.printer = new Printer({components: [Header, Test, Footer]})
 
-    this.printer = new Printer({components: [Header, TestCompleted, Footer]})
     return this.printer.getRoot()
   }
 

@@ -1,4 +1,4 @@
-import { keyboardTemplate } from "./keyboard.template";
+import { keyboardTemplate } from "./templates/keyboard.template";
 import {$} from '@core/dom'
 
 export class Keyboard{

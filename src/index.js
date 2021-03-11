@@ -4,9 +4,10 @@ import { Router } from './core/router/Router'
 import { CompletedPage } from './views/CompletedPage'
 import { HomePage } from './views/HomePage'
 import { LearnPage } from './views/LearnPage'
-import { PrintTutorPage } from './views/PrintTutorPage'
-import { TrainerPage } from './views/TrainerPage'
-import { TutorResultPage } from './views/TutorResultPage'
+import { TestPage } from './views/TestPage'
+import { TestTypingPage } from './views/TestTypingPage'
+import { TrainerTypingPage } from './views/TrainerTypingPage'
+import { TrainerResultPage } from './views/TrainerResultPage'
 
 
 const router = new Router('#app',[
@@ -15,35 +16,41 @@ const router = new Router('#app',[
     component: HomePage
   },
   {
-    path: '/completed',
+    path: '/test-completed',
     component: CompletedPage
   },
   {
-    path: '/trainer',
-    component: TrainerPage
+    path: '/test',
+    component: TestPage
+  },
+  {
+    path: '/test-typing',
+    component: TestTypingPage
   },
   {
     path: '/learn',
     component: LearnPage
   },
   {
-    path: '/typing-tutor',
-    component: PrintTutorPage
+    path: '/trainer-typing',
+    component: TrainerTypingPage
   },
   {
-    path: '/tutor-result',
-    component: TutorResultPage
+    path: '/trainer-result',
+    component: TrainerResultPage
   }
 ])
 
 router.beforeEach((to, next)=>{
   const {tutorResult, result} = store.getState()
-  if(to === 'tutor-result' && !tutorResult){
-    router.redirect('/#trainer')
-  }else if(to === 'completed' && !result.speed && !result.accuracy){
+  if(to === 'trainer-result' && !tutorResult){
     router.redirect('/')
+  }else if(to === 'test-completed' && !result.speed && !result.accuracy){
+    router.redirect('/#test-typing')
   }else{
     next()
   }
 })
+
+router.init()
 

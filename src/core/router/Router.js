@@ -8,10 +8,12 @@ export class Router {
     this.beforeEachRender = null
     this.isNext = null
     this.changePageHandler = this.changePageHandler.bind(this)
-    this.init()
   }
 
   init() {
+    if(this.beforeEachRender){
+      this.beforeEachRender(ActiveRoute.path, this.next.bind(this))
+    }
     window.addEventListener('hashchange', this.changePageHandler)
     this.changePageHandler()
   }

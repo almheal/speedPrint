@@ -1,7 +1,7 @@
 import { $ } from '@core/dom'
-import { createStore } from '@core/createStore'
+import { createStore } from '@core/store/createStore'
 import { rootReducer } from '@/store/rootReducer'
-import { StoreSubscriber } from '../core/StoreSubscriber'
+import { StoreSubscriber } from '@core/store/StoreSubscriber'
 
 //create store
 export const store = createStore(rootReducer, {
@@ -27,12 +27,12 @@ export class Printer {
       if (Component.tag) {
         $el = $.createElement({
           tag: Component.tag,
-          classNames: [Component.className],
+          classNames: [...Component.className.map(item => item)],
         })
       } else {
         $el = $.createElement({
           tag: 'div',
-          classNames: [Component.className],
+          classNames: [...Component.className.map(item => item)],
         })
       }
 

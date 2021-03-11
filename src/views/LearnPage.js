@@ -1,17 +1,15 @@
 import {Printer} from '@/components/Printer'
-import {Header} from '@/components/header/Header'
-import { learnTemplate } from '../components/learn/learn.template'
+import {Header} from '@/components/UI/Header'
+import {Footer} from '@/components/UI/Footer'
+import {Learn} from '@/components/UI/Learn'
 
 export class LearnPage{
 
   getRoot(){
-    this.printer = new Printer({components: [Header]})
-    const template = learnTemplate()
+    this.printer = new Printer({components: [Header, Learn, Footer]})
 
-    const $root = this.printer.getRoot()
-    $root.insertAdjacentHTML('beforeend', template)
-    
-    return $root
+
+    return this.printer.getRoot()
   }
 
   afterRender(){
