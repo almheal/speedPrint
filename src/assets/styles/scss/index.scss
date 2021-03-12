@@ -60,6 +60,7 @@ body {
   font-size: 21px;
   margin-right: 45px;
   line-height: 32px;
+  user-select: none;
   & .active {
     background-color: #5bc538;
     color: #fff;
@@ -70,7 +71,7 @@ body {
     }
   }
 
-  .color-green {
+  & .prev{
     color: #5bc538;
   }
 }
@@ -458,6 +459,7 @@ body {
   position: relative;
   max-width: 1720px;
   margin: 0 100px;
+  user-select: none;
 }
 
 .hands{
