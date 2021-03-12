@@ -1,5 +1,5 @@
 import { Print } from './Print'
-import { testingPrintTemplate } from './templates/testing.template'
+import { testPrintTemplate } from './templates/testPrint.template'
 import { textPrintRu } from '@/mocks/textRu'
 import { textPrintEn } from '@/mocks/textEn'
 import { randomItemArray } from '@core/utils'
@@ -19,7 +19,7 @@ export class TestingPrint extends Print {
 
   //render html template
   toHTML() {
-    const template = testingPrintTemplate()
+    const template = testPrintTemplate()
     this.$root.insertAdjacentHTML('afterbegin', template)
 
     const {languagePrint} = this.$getState()
@@ -83,7 +83,7 @@ export class TestingPrint extends Print {
   //handling finish typing text
   finishPrint(){
     clearInterval(this.speedInterval)
-    window.location.href = '/#test-completed'
+    window.location.hash = '#test-completed'
     const date = todayDate()
     this.$dispatch(calculateResult({speed: this.speed, accuracy: this.accuracy, date}))
   }

@@ -1,4 +1,4 @@
-
+import gun from '../../assets/img/gun.png'
 
 export function testStartModalTemplate(){
   return `<div class="modal__body">
@@ -8,7 +8,7 @@ export function testStartModalTemplate(){
   <div class="modal__icon">
     <img
       class="modal__icon-img"
-      src="../src/assets/img/gun.png"
+      src="${gun}"
       alt="start"
     />
   </div>

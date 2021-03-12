@@ -1,3 +1,7 @@
+import certificate from '../../assets/img/certificate.jpg'
+import speedometer from '../../assets/img/speedometer.svg'
+import accuracy from '../../assets/img/target.svg'
+
 export function testCompletedTemplate(){
   return `
   <div class="container">
@@ -9,7 +13,7 @@ export function testCompletedTemplate(){
               <div class="test__icon">
                 <img
                   class="test__img"
-                  src="../src/assets/img/speedometer.svg"
+                  src="${speedometer}"
                   alt="speed"
                 />
               </div>
@@ -22,7 +26,7 @@ export function testCompletedTemplate(){
               <div class="test__icon">
                 <img
                   class="test__img"
-                  src="../src/assets/img/target.svg"
+                  src="${accuracy}"
                   alt="accuracy"
                 />
               </div>
@@ -35,7 +39,7 @@ export function testCompletedTemplate(){
           <div class="certificate">
             <img
               class="certificate__img"
-              src="../src/assets/img/certificate.jpg"
+              src="${certificate}"
               alt="certificate"
             />
             <div class="certificate__body">

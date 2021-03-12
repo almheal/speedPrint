@@ -1,3 +1,9 @@
+import position from '../../assets/img/learn-position.png'
+import main_keys from '../../assets/img/main_keys.png'
+import keyboard from '../../assets/img/keyboard.png'
+
+
+
 export function learnTemplate() {
   return `
 
@@ -21,7 +27,7 @@ export function learnTemplate() {
           </ul>
         </div>
         <div class="learn__position">
-          <img class="learn__img" src="../src/assets/img/learn-position.png" alt="print-position" >
+          <img class="learn__img" src="${position}" alt="print-position" >
         </div>
       </div>
 
@@ -29,7 +35,7 @@ export function learnTemplate() {
         <div class="learn__name">Исходная позиция</div>
         <div class="learn__content">
           <div class="learn__keys">
-            <img class="learn__img" src="../src/assets/img/main_keys.png" alt="print-position" >
+            <img class="learn__img" src="${main_keys}" alt="main-keys" >
           </div>
           <div class="learn__text">
             <p>Немного согни пальцы и положи их на клавиши ФЫВА и ОЛДЖ, которые находятся в среднем ряду. Эта строка называется ОСНОВНОЙ СТРОКОЙ, потому что ты всегда будешь начинать с этих клавиш и возвращаться к ним.</p>
@@ -42,7 +48,7 @@ export function learnTemplate() {
         <div class="learn__name">Схема клавиатуры</div>
         <div class="learn__content">
           <div class="learn__keyboard">
-            <img class="learn__img" src="../src/assets/img/keyboard.png" alt="keyboard" >
+            <img class="learn__img" src="${keyboard}" alt="keyboard" >
           </div>
           <div class="learn__text">
             <p>Цвет клавиш на этой клавиатуре поможет тебе понять и запомнить, каким пальцем на какую клавишу нужно нажимать.</p>

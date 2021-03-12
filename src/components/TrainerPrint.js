@@ -89,7 +89,7 @@ export class TrainerPrint extends Print{
 
   // finish typing text
   finishPrint(){
-    window.location.href = '/#trainer-result'
+    window.location.hash = `#trainer-result`
     this.$dispatch(changeTutorResult(this.speed))
   }
 

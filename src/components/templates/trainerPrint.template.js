@@ -1,3 +1,5 @@
+import hands from '../../assets/img/hands.png'
+
 export function trainerPrintTemplate() {
   return `<div class="tutor__inner">
   <div class="tutor__header">
@@ -7,7 +9,7 @@ export function trainerPrintTemplate() {
     </div>
   </div>
   <div class="tutor__body" data-tutor-body>
-    <img class="hands" src="../src/assets/img/hands.png" alt="hands" data-hands/>
+    <img class="hands" src="${hands}" alt="hands" data-hands/>
   </div>
 </div>`
 }

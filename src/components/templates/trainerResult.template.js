@@ -1,3 +1,5 @@
+import tutorMan from '../../assets/img/tutor-man.png'
+
 export function trainerResultTemplate() {
   return `
     <div class="container">
@@ -18,7 +20,7 @@ export function trainerResultTemplate() {
 
             <div class="result__column">
               <div class="result__img-wrapper">
-                <img class="result__img" src="../src/assets/img/tutor-man.png" alt="result-man"/>
+                <img class="result__img" src="${tutorMan}" alt="result-man"/>
               </div>
             </div>
 

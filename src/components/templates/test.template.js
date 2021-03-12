@@ -1,18 +1,23 @@
+import platinumMedal from '../../assets/img/platinum-medal.png'
+import goldMedal from '../../assets/img/gold-medal.png'
+import silverMedal from '../../assets/img/silver-medal.png'
+import certificateHand from '../../assets/img/certification-hand.png'
+
 const rewards = [
   {
-    img: 'platinum-medal.png',
+    img: platinumMedal,
     name: 'platinum',
     speed: 350,
     accuracy: 99.5
   },
   {
-    img: 'gold-medal.png',
+    img: goldMedal,
     name: 'gold',
     speed: 250,
     accuracy: 98.7
   },
   {
-    img: 'silver-medal.png',
+    img: silverMedal,
     name: 'silver',
     speed: 200,
     accuracy: 96
@@ -41,7 +46,7 @@ export function testTemplate() {
       <div class="test__inner">
         <div class="trainer__row">
           <div class="trainer__column">
-            <img class="trainer__img" src="../src/assets/img/certification-hand.png" alt="man" >
+            <img class="trainer__img" src="${certificateHand}" alt="man" >
           </div>
           <div class="trainer__column">
             <h1 class="trainer__title">Бесплатный тест скорости печати</h1>
@@ -98,7 +103,7 @@ function createReward(item) {
   return `
   <ul class="rewards__list">
     <li class="reward__medal">
-      <img class="reward__medal-img" src="../src/assets/img/${item.img}" alt="reward-medal"/>
+      <img class="reward__medal-img" src="${item.img}" alt="reward-medal"/>
       <span>${item.name}</span>
     </li>
     <li class="reward__speed">

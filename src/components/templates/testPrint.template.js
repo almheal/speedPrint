@@ -1,4 +1,7 @@
-export function testingPrintTemplate(){
+import speedometer from '../../assets/img/speedometer.svg'
+import accuracy from '../../assets/img/target.svg'
+
+export function testPrintTemplate(){
   return `<div class="container">
   <div class="print__inner">
     <div class="print__body">
@@ -9,7 +12,7 @@ export function testingPrintTemplate(){
         <div class="print__info">
           <div class="info__item">
             <div class="info__name">
-              <img class="info__icon" src="../src/assets/img/speedometer.svg" alt="print-score"/>
+              <img class="info__icon" src="${speedometer}" alt="print-score"/>
               <span>скорость</span>
             </div>
             <div class="info__number">
@@ -19,7 +22,7 @@ export function testingPrintTemplate(){
           </div>
           <div class="info__item">
             <div class="info__name">
-            <img class="info__icon" src="../src/assets/img/target.svg" alt="print-score"/>
+            <img class="info__icon" src="${accuracy}" alt="print-score"/>
               <span>Точность</span>
             </div>
             <div class="info__number"><span data-accuracy>100</span> <span>%</span></div>

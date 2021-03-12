@@ -1,9 +1,11 @@
+import manImg from '../../assets/img/trainer-man.png'
+
 export function trainerTemplate(){
   return `<div class="container">
   <div class="trainer__inner">
     <div class="trainer__row">
       <div class="trainer__column">
-        <img class="trainer__img" src="../src/assets/img/trainer-man.png" alt="man" >
+        <img class="trainer__img" src="${manImg}" alt="man" >
       </div>
       <div class="trainer__column">
         <h1 class="trainer__title">Печатать быстрее</h1>
