@@ -21,6 +21,10 @@
   display: flex;
 }
 
+.menu__item{
+  margin-right: 10px;
+}
+
 .menu-link {
   color: #fff;
   padding: 7px 15px;
@@ -34,5 +38,9 @@
   &:hover {
     background-color: #27a2e8;
     transition: 0.3s;
+  }
+  &.active-route{
+    background-color: #27a2e8;
+    transition: .3s;
   }
 }

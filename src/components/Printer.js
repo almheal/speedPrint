@@ -1,38 +1,66 @@
-import $dom from '@core/dom'
+import { $ } from '@core/dom'
+import { createStore } from '@core/store/createStore'
+import { rootReducer } from '@/store/rootReducer'
+import { StoreSubscriber } from '@core/store/StoreSubscriber'
+
+//create store
+export const store = createStore(rootReducer, {
+  result: {
+    speed: 0,
+    accuracy: 0
+  },
+})
 
 export class Printer {
-  constructor(selector, components) {
-    this.$el = document.querySelector(selector)
-    this.components = components
+  constructor({ components }) {
+    this.components = components || []
+    this.subscriber = new StoreSubscriber(store)
   }
 
+  // handling components, create template component and add root element
   getRoot() {
+    const $root = $.createElement({ tag: 'div', classNames: ['printer'] })
+
     this.components = this.components.map((Component) => {
       let $el
 
       if (Component.tag) {
-        $el = $dom.createElement({
+        $el = $.createElement({
           tag: Component.tag,
-          classNames: [Component.className],
+          classNames: [...Component.className.map(item => item)],
         })
       } else {
-        $el = $dom.createElement({ tag: 'div', classNames: [Component.className] })
+        $el = $.createElement({
+          tag: 'div',
+          classNames: [...Component.className.map(item => item)],
+        })
       }
 
-      const component = new Component($el)
+      const componentOptions = {
+        store,
+      }
 
+      const component = new Component($el, componentOptions)
+      $root.append(component.toHTML())
       return component
     })
+
+    return $root
   }
 
-  render() {
-    this.getRoot()
-
+  //init subscribe to store, init listeners
+  init() {
     this.components.forEach((component) => {
-      this.$el.append(component.toHTML())
-      if (component.initListeners) {
-        component.initListeners()
+      if (component.init) {
+        component.init()
       }
     })
+    this.subscriber.subscribeComponents(this.components)
+  }
+
+  //destroy all components
+  destroy() {
+    this.subscriber.unsubscribeFromStore()
+    this.components.forEach((component) => component.destroy())
   }
 }

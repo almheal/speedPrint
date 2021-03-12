@@ -1,0 +1,52 @@
+.language__select{
+  position: relative;
+  display: flex;
+  margin: 0 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  & .select__input{
+    position: relative;
+    font-size: 16px;
+    color: #9b9b9b;
+    padding: 0 15px 0 25px;
+    cursor: pointer;
+  }
+
+  & .select__dropdown{
+    position: absolute;
+    right: 15px;
+    bottom: -15px;
+    transform: translateY(100%);
+    height: 0;
+    overflow: hidden;
+    transition: .3s;
+    &.open{
+      height: auto;
+      overflow: visible;
+      transition: .3s;
+    }
+  }
+
+  & .select__list{
+    min-width: 130px;
+    padding: 5px 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.3);
+    border-radius: 5px;
+  }
+
+  & .select__item{
+    color: #333;
+    font-size:  14px;
+    padding: 10px 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .3s;
+    &:hover{
+      background-color: #29a5e8;
+      color: #fff;
+      transition: .3s;
+    }
+  }
+}
+
