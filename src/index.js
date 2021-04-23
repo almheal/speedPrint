@@ -9,6 +9,8 @@ import { TestTypingPage } from './views/TestTypingPage'
 import { TrainerTypingPage } from './views/TrainerTypingPage'
 import { TrainerResultPage } from './views/TrainerResultPage'
 
+//test
+
 
 const router = new Router('#app',[
   {
